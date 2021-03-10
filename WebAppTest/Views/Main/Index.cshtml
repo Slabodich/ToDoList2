@@ -1,0 +1,42 @@
+﻿@model List<ToDoItem>
+
+@{
+    ViewData["Title"] = "Список дел";
+}
+
+<div class="row mb-3">
+    <div class="col-1">
+        <a class="btn btn-dark" href="/Main/Add">Добавить</a>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead class="font-weight-bold text-dark"s>
+        <tr>
+            <td>№</td>
+
+            <td id="@nameof(ToDoItem.Name)">Название</td>
+            <td id="@nameof(ToDoItem.StartDate)">Дата начала</td>
+            <td id="@nameof(ToDoItem.EndDate)">Дата окончания</td>
+            <td id="@nameof(ToDoItem.Description)">Описание</td>
+            <td id="@nameof(ToDoItem.Status)">Статус</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@(Model.IndexOf(item) + 1)</td>
+            <td>@item.Name</td>
+            <td>@item.StartDate</td>
+            <td>@item.EndDate</td>
+            <td>@item.Description</td>
+            <td>@item.Status</td>
+            <td>
+                <a class="btn btn-secondary btn-lg" href="/Edit/Index/@item.ID">&#9998;</a>
+                <a class="btn btn-secondary btn-lg" href="/Main/Delete/@item.ID">&#128465;</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
